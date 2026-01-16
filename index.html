@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>신선혜 선생님의 꿈나무 학습터</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="초등학생을 위한 맞춤형 학습 자료와 궁금한 점을 물어볼 수 있는 스마트 챗봇 서비스입니다.">
+</head>
+
+<body>
+
+    <header>
+        <div class="header-top">
+            <div class="logo">
+                <img src="elementary_study_mascot_1768540256040.png" alt="Mascot">
+                <span>신선혜 선생님의 꿈나무 학습터</span>
+            </div>
+        </div>
+        <nav>
+            <ul id="main-nav">
+                <li><button class="active" onclick="filterBySubject('all')">전체보기</button></li>
+                <li><button onclick="filterBySubject('국어')">국어</button></li>
+                <li><button onclick="filterBySubject('수학')">수학</button></li>
+                <li><button onclick="filterBySubject('사회')">사회</button></li>
+                <li><button onclick="filterBySubject('과학')">과학</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>신나는 공부 시간! 🚀</h1>
+            <p>궁금한 과목을 선택하고 학습 자료를 찾아보세요. 모르는 게 있으면 챗봇에게 물어봐!</p>
+        </section>
+
+        <div class="grid" id="learning-grid">
+            <!-- Cards will be injected here -->
+        </div>
+    </main>
+
+    <!-- Chatbot Toggle -->
+    <div class="chat-toggle" onclick="toggleChat()" id="chat-toggle">
+        💬
+    </div>
+
+    <!-- Chatbot Window -->
+    <div class="chat-container" id="chat-window">
+        <div class="chat-header">
+            <h2>🤖 공부 도와미</h2>
+            <button class="chat-close" onclick="toggleChat()">×</button>
+        </div>
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot"> 안녕! 나는 공부 도와미야. 무엇이든 물어봐! (예: "수학 나눗셈에 대해 알려줘", "국어 읽기를 잘하려면?")</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="여기에 질문을 입력하세요..." onkeypress="handleKeyPress(event)">
+            <button onclick="sendMessage()">보내기</button>
+        </div>
+    </div>
+
+    <script>
+        // Data from curriculum.ttl parsed into JSON
+        const curriculumData = [
+            // 국어
+            { id: "2국01-01", subject: "국어", description: "중요한 내용이나 일이 일어난 순서를 고려하며 듣고 말한다.", resource: "이야기 듣고 순서 정리하기", url: "https://primary.ebs.co.kr" },
+            { id: "2국01-02", subject: "국어", description: "바르고 고운 말로 서로의 감정을 나누며 듣고 말한다.", resource: "고운 말 사용 대화 활동", url: "https://primary.ebs.co.kr" },
+            { id: "2국01-03", subject: "국어", description: "상대의 말을 집중하여 듣고 말차례를 지키며 대화한다.", resource: "말차례 지키기 대화 연습", url: "https://primary.ebs.co.kr" },
+            { id: "2국01-04", subject: "국어", description: "자신의 경험이나 생각을 바른 자세로 발표한다.", resource: "경험 발표하기 활동 자료", url: "https://primary.ebs.co.kr" },
+            { id: "2국01-05", subject: "국어", description: "듣기와 말하기에 관심과 흥미를 가진다.", resource: "듣기·말하기 흥미 활동", url: "https://primary.ebs.co.kr" },
+            { id: "2국02-01", subject: "국어", description: "글자, 단어, 문장, 짧은 글을 정확하게 소리 내어 읽는다.", resource: "소리 내어 정확히 읽기", url: "https://primary.ebs.co.kr" },
+            { id: "2국02-02", subject: "국어", description: "문장과 짧은 글을 알맞게 띄어 읽는다.", resource: "띄어 읽기 연습 자료", url: "https://primary.ebs.co.kr" },
+            { id: "2국02-03", subject: "국어", description: "글을 읽고 중심 내용을 확인한다.", resource: "중심 내용 찾기 활동", url: "https://primary.ebs.co.kr" },
+            { id: "2국02-04", subject: "국어", description: "인물의 마음이나 생각을 짐작하며 글을 읽는다.", resource: "인물의 마음 짐작하기", url: "https://primary.ebs.co.kr" },
+            { id: "2국02-05", subject: "국어", description: "읽기에 흥미를 가지고 즐겨 읽는 태도를 지닌다.", resource: "즐거운 독서 습관 기르기", url: "https://primary.ebs.co.kr" },
+            // 수학
+            { id: "2수01-05", subject: "수학", description: "덧셈과 뺄셈의 의미를 실생활과 연결하여 이해한다.", resource: "실생활 덧셈·뺄셈 문제", url: "https://primary.ebs.co.kr" },
+            { id: "2수01-06", subject: "수학", description: "두 자리 수의 덧셈과 뺄셈 계산 원리를 이해한다.", resource: "두 자리 수 연산 학습", url: "https://primary.ebs.co.kr" },
+            { id: "2수01-07", subject: "수학", description: "덧셈과 뺄셈의 관계를 이해한다.", resource: "덧셈·뺄셈 관계 탐구", url: "https://primary.ebs.co.kr" },
+            { id: "2수01-08", subject: "수학", description: "세 수의 덧셈과 뺄셈을 할 수 있다.", resource: "세 수의 계산 연습", url: "https://primary.ebs.co.kr" },
+            { id: "2수01-09", subject: "수학", description: "□가 사용된 덧셈식과 뺄셈식을 해결한다.", resource: "□가 있는 식 해결하기", url: "https://primary.ebs.co.kr" },
+            { id: "4수01-05", subject: "수학", description: "나눗셈의 의미와 곱셈과의 관계를 이해한다.", resource: "나눗셈 개념 학습", url: "https://primary.ebs.co.kr" },
+            { id: "4수01-06", subject: "수학", description: "몫과 나머지의 의미를 안다.", resource: "몫과 나머지 이해하기", url: "https://primary.ebs.co.kr" },
+            { id: "4수01-07", subject: "수학", description: "두 자리 수로 나누는 나눗셈을 할 수 있다.", resource: "두 자리 수 나눗셈", url: "https://primary.ebs.co.kr" },
+            { id: "4수01-09", subject: "수학", description: "분수의 필요성과 개념을 이해한다.", resource: "분수 개념 학습", url: "https://primary.ebs.co.kr" },
+            { id: "4수01-10", subject: "수학", description: "여러 종류의 분수를 알고 그 관계를 이해한다.", resource: "분수의 종류와 관계", url: "https://primary.ebs.co.kr" },
+            // 사회
+            { id: "4사03-01", subject: "사회", description: "최근 사회 변화와 생활 모습의 변화를 탐색한다.", resource: "사회 변화 탐구 자료", url: "https://www.edunet.net" },
+            { id: "4사03-02", subject: "사회", description: "다양한 문화를 존중하는 태도를 기른다.", resource: "다문화 이해 학습 자료", url: "https://www.edunet.net" },
+            { id: "4사04-01", subject: "사회", description: "옛날 풍습과 오늘날을 비교한다.", resource: "전통 생활 탐구", url: "https://www.edunet.net" },
+            { id: "4사04-02", subject: "사회", description: "교통의 변화에 따른 생활 변화를 이해한다.", resource: "교통수단 변화 학습", url: "https://www.edunet.net" },
+            { id: "4사04-03", subject: "사회", description: "통신수단 변화에 따른 의사소통 방식을 설명한다.", resource: "통신수단의 변화", url: "https://www.edunet.net" },
+            { id: "4사08-01", subject: "사회", description: "학교 자치를 통해 민주주의를 이해한다.", resource: "학교 민주주의 사례", url: "https://www.edunet.net" },
+            { id: "4사08-02", subject: "사회", description: "지역 사회 민주주의 참여를 이해한다.", resource: "지역 자치 사례", url: "https://www.edunet.net" },
+            { id: "4사09-01", subject: "사회", description: "생활 문제를 합리적으로 해결한다.", resource: "생활 문제 해결 학습", url: "https://www.edunet.net" },
+            { id: "4사10-01", subject: "사회", description: "자연환경과 인문환경을 탐구한다.", resource: "환경 탐구 학습", url: "https://www.edunet.net" },
+            { id: "4사10-02", subject: "사회", description: "도시의 특징과 삶의 모습을 이해한다.", resource: "도시 생활 이해 자료", url: "https://www.edunet.net" },
+            // 과학
+            { id: "4과01-01", subject: "과학", description: "힘과 관련된 현상을 관찰한다.", resource: "힘과 운동 관찰", url: "https://www.edunet.net" },
+            { id: "4과01-02", subject: "과학", description: "물체의 무게를 비교한다.", resource: "무게 비교 실험", url: "https://www.edunet.net" },
+            { id: "4과01-03", subject: "과학", description: "저울을 사용해 무게를 비교한다.", resource: "저울 사용법 학습", url: "https://www.edunet.net" },
+            { id: "4과01-04", subject: "과학", description: "도구 사용에 따른 힘의 변화를 이해한다.", resource: "간단한 기계 탐구", url: "https://www.edunet.net" },
+            { id: "4과02-01", subject: "과학", description: "동물을 특징에 따라 분류한다.", resource: "동물 분류 학습", url: "https://www.edunet.net" },
+            { id: "4과02-02", subject: "과학", description: "동물의 생활 방식과 환경의 관계를 설명한다.", resource: "동물과 환경", url: "https://www.edunet.net" },
+            { id: "4과02-03", subject: "과학", description: "동물의 특징을 활용한 생활용품을 설계한다.", resource: "동물 모방 설계 활동", url: "https://www.edunet.net" },
+            { id: "4과03-01", subject: "과학", description: "식물을 특징에 따라 분류한다.", resource: "식물 분류 학습", url: "https://www.edunet.net" },
+            { id: "4과03-02", subject: "과학", description: "식물의 생김새와 환경의 관계를 설명한다.", resource: "식물과 환경", url: "https://www.edunet.net" },
+            { id: "4과03-03", subject: "과학", description: "식물의 특징을 활용한 생활용품을 설계한다.", resource: "식물 모방 설계 활동", url: "https://www.edunet.net" }
+        ];
+
+        function renderCards(data) {
+            const grid = document.getElementById('learning-grid');
+            grid.innerHTML = '';
+
+            data.forEach(item => {
+                const tagClass = getTagClass(item.subject);
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.innerHTML = `
+                    <div>
+                        <span class="subject-tag ${tagClass}">${item.subject}</span>
+                        <h3>${item.description}</h3>
+                        <span class="curriculum-id">[교육과정 번호: ${item.id}]</span>
+                    </div>
+                    <a href="${item.url}" target="_blank" class="resource-link">${item.resource} 보러가기</a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function getTagClass(subject) {
+            switch (subject) {
+                case '국어': return 'tag-kor';
+                case '수학': return 'tag-math';
+                case '사회': return 'tag-soc';
+                case '과학': return 'tag-sci';
+                default: return '';
+            }
+        }
+
+        function filterBySubject(subject) {
+            // Update active button
+            const buttons = document.querySelectorAll('#main-nav button');
+            buttons.forEach(btn => {
+                if (btn.innerText === subject || (subject === 'all' && btn.innerText === '전체보기')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            if (subject === 'all') {
+                renderCards(curriculumData);
+            } else {
+                const filtered = curriculumData.filter(item => item.subject === subject);
+                renderCards(filtered);
+            }
+        }
+
+        // Chatbot Logic
+        function toggleChat() {
+            const chatWindow = document.getElementById('chat-window');
+            chatWindow.classList.toggle('open');
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendMessage();
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addMessage(message, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addMessage(response, 'bot');
+            }, 600);
+        }
+
+        function addMessage(text, sender) {
+            const container = document.getElementById('chat-messages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender}`;
+            msgDiv.innerText = text;
+            container.appendChild(msgDiv);
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function getBotResponse(query) {
+            // Simple keyword search in curriculumData
+            const keywords = query.split(' ');
+            let bestMatch = null;
+            let maxMatches = 0;
+
+            for (const item of curriculumData) {
+                let matches = 0;
+                keywords.forEach(kw => {
+                    if (item.description.includes(kw) || item.resource.includes(kw) || item.subject.includes(kw)) {
+                        matches++;
+                    }
+                });
+                if (matches > maxMatches) {
+                    maxMatches = matches;
+                    bestMatch = item;
+                }
+            }
+
+            if (bestMatch && maxMatches > 0) {
+                return `${bestMatch.subject} 과목에서 '${bestMatch.resource}'라는 내용을 찾았어! \n내용: ${bestMatch.description}`;
+            } else {
+                return "음... 그건 잘 모르겠어. 과목 이름(국어, 수학...)이나 배우고 싶은 내용(나눗셈, 띄어쓰기...)을 말해줄래?";
+            }
+        }
+
+        // Initial render
+        renderCards(curriculumData);
+    </script>
+</body>
+
+</html>

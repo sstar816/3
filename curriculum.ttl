@@ -1,0 +1,341 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dc:  <http://purl.org/dc/elements/1.1/> .
+@prefix edu: <http://example.org/education#> .
+@prefix ach: <http://example.org/achievement#> .
+@prefix res: <http://example.org/resource#> .
+
+#################################################
+# 국어 (2학년)
+#################################################
+
+ach:2국01-01 a edu:AchievementStandard ;
+    dc:description "중요한 내용이나 일이 일어난 순서를 고려하며 듣고 말한다." ;
+    edu:matchedResource res:KOR_Listen_Sequence .
+
+res:KOR_Listen_Sequence a edu:LearningResource ;
+    dc:title "이야기 듣고 순서 정리하기" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2국01-02 a edu:AchievementStandard ;
+    dc:description "바르고 고운 말로 서로의 감정을 나누며 듣고 말한다." ;
+    edu:matchedResource res:KOR_Listen_Polite .
+
+res:KOR_Listen_Polite a edu:LearningResource ;
+    dc:title "고운 말 사용 대화 활동" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2국01-03 a edu:AchievementStandard ;
+    dc:description "상대의 말을 집중하여 듣고 말차례를 지키며 대화한다." ;
+    edu:matchedResource res:KOR_TurnTaking .
+
+res:KOR_TurnTaking a edu:LearningResource ;
+    dc:title "말차례 지키기 대화 연습" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2국01-04 a edu:AchievementStandard ;
+    dc:description "자신의 경험이나 생각을 바른 자세로 발표한다." ;
+    edu:matchedResource res:KOR_Presentation .
+
+res:KOR_Presentation a edu:LearningResource ;
+    dc:title "경험 발표하기 활동 자료" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2국01-05 a edu:AchievementStandard ;
+    dc:description "듣기와 말하기에 관심과 흥미를 가진다." ;
+    edu:matchedResource res:KOR_Interest .
+
+res:KOR_Interest a edu:LearningResource ;
+    dc:title "듣기·말하기 흥미 활동" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2국02-01 a edu:AchievementStandard ;
+    dc:description "글자, 단어, 문장, 짧은 글을 정확하게 소리 내어 읽는다." ;
+    edu:matchedResource res:KOR_Read_Accuracy .
+
+res:KOR_Read_Accuracy a edu:LearningResource ;
+    dc:title "소리 내어 정확히 읽기" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2국02-02 a edu:AchievementStandard ;
+    dc:description "문장과 짧은 글을 알맞게 띄어 읽는다." ;
+    edu:matchedResource res:KOR_Read_Pause .
+
+res:KOR_Read_Pause a edu:LearningResource ;
+    dc:title "띄어 읽기 연습 자료" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2국02-03 a edu:AchievementStandard ;
+    dc:description "글을 읽고 중심 내용을 확인한다." ;
+    edu:matchedResource res:KOR_MainIdea .
+
+res:KOR_MainIdea a edu:LearningResource ;
+    dc:title "중심 내용 찾기 활동" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2국02-04 a edu:AchievementStandard ;
+    dc:description "인물의 마음이나 생각을 짐작하며 글을 읽는다." ;
+    edu:matchedResource res:KOR_CharacterEmotion .
+
+res:KOR_CharacterEmotion a edu:LearningResource ;
+    dc:title "인물의 마음 짐작하기" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2국02-05 a edu:AchievementStandard ;
+    dc:description "읽기에 흥미를 가지고 즐겨 읽는 태도를 지닌다." ;
+    edu:matchedResource res:KOR_ReadingHabit .
+
+res:KOR_ReadingHabit a edu:LearningResource ;
+    dc:title "즐거운 독서 습관 기르기" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+#################################################
+# 수학
+#################################################
+
+ach:2수01-05 a edu:AchievementStandard ;
+    dc:description "덧셈과 뺄셈의 의미를 실생활과 연결하여 이해한다." ;
+    edu:matchedResource res:MATH_AddSub_Life .
+
+res:MATH_AddSub_Life a edu:LearningResource ;
+    dc:title "실생활 덧셈·뺄셈 문제" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2수01-06 a edu:AchievementStandard ;
+    dc:description "두 자리 수의 덧셈과 뺄셈 계산 원리를 이해한다." ;
+    edu:matchedResource res:MATH_AddSub_TwoDigit .
+
+res:MATH_AddSub_TwoDigit a edu:LearningResource ;
+    dc:title "두 자리 수 연산 학습" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2수01-07 a edu:AchievementStandard ;
+    dc:description "덧셈과 뺄셈의 관계를 이해한다." ;
+    edu:matchedResource res:MATH_Relation .
+
+res:MATH_Relation a edu:LearningResource ;
+    dc:title "덧셈·뺄셈 관계 탐구" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2수01-08 a edu:AchievementStandard ;
+    dc:description "세 수의 덧셈과 뺄셈을 할 수 있다." ;
+    edu:matchedResource res:MATH_ThreeNumbers .
+
+res:MATH_ThreeNumbers a edu:LearningResource ;
+    dc:title "세 수의 계산 연습" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:2수01-09 a edu:AchievementStandard ;
+    dc:description "□가 사용된 덧셈식과 뺄셈식을 해결한다." ;
+    edu:matchedResource res:MATH_BoxEquation .
+
+res:MATH_BoxEquation a edu:LearningResource ;
+    dc:title "□가 있는 식 해결하기" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:4수01-05 a edu:AchievementStandard ;
+    dc:description "나눗셈의 의미와 곱셈과의 관계를 이해한다." ;
+    edu:matchedResource res:MATH_Division .
+
+res:MATH_Division a edu:LearningResource ;
+    dc:title "나눗셈 개념 학습" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:4수01-06 a edu:AchievementStandard ;
+    dc:description "몫과 나머지의 의미를 안다." ;
+    edu:matchedResource res:MATH_QuotientRemainder .
+
+res:MATH_QuotientRemainder a edu:LearningResource ;
+    dc:title "몫과 나머지 이해하기" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:4수01-07 a edu:AchievementStandard ;
+    dc:description "두 자리 수로 나누는 나눗셈을 할 수 있다." ;
+    edu:matchedResource res:MATH_LongDivision .
+
+res:MATH_LongDivision a edu:LearningResource ;
+    dc:title "두 자리 수 나눗셈" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:4수01-09 a edu:AchievementStandard ;
+    dc:description "분수의 필요성과 개념을 이해한다." ;
+    edu:matchedResource res:MATH_Fraction .
+
+res:MATH_Fraction a edu:LearningResource ;
+    dc:title "분수 개념 학습" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+ach:4수01-10 a edu:AchievementStandard ;
+    dc:description "여러 종류의 분수를 알고 그 관계를 이해한다." ;
+    edu:matchedResource res:MATH_FractionTypes .
+
+res:MATH_FractionTypes a edu:LearningResource ;
+    dc:title "분수의 종류와 관계" ;
+    dc:identifier <https://primary.ebs.co.kr> .
+
+#################################################
+# 사회
+#################################################
+
+ach:4사03-01 a edu:AchievementStandard ;
+    dc:description "최근 사회 변화와 생활 모습의 변화를 탐색한다." ;
+    edu:matchedResource res:SOC_Change .
+
+res:SOC_Change a edu:LearningResource ;
+    dc:title "사회 변화 탐구 자료" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4사03-02 a edu:AchievementStandard ;
+    dc:description "다양한 문화를 존중하는 태도를 기른다." ;
+    edu:matchedResource res:SOC_Multiculture .
+
+res:SOC_Multiculture a edu:LearningResource ;
+    dc:title "다문화 이해 학습 자료" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4사04-01 a edu:AchievementStandard ;
+    dc:description "옛날 풍습과 오늘날을 비교한다." ;
+    edu:matchedResource res:SOC_Custom .
+
+res:SOC_Custom a edu:LearningResource ;
+    dc:title "전통 생활 탐구" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4사04-02 a edu:AchievementStandard ;
+    dc:description "교통의 변화에 따른 생활 변화를 이해한다." ;
+    edu:matchedResource res:SOC_Transport .
+
+res:SOC_Transport a edu:LearningResource ;
+    dc:title "교통수단 변화 학습" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4사04-03 a edu:AchievementStandard ;
+    dc:description "통신수단 변화에 따른 의사소통 방식을 설명한다." ;
+    edu:matchedResource res:SOC_Communication .
+
+res:SOC_Communication a edu:LearningResource ;
+    dc:title "통신수단의 변화" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4사08-01 a edu:AchievementStandard ;
+    dc:description "학교 자치를 통해 민주주의를 이해한다." ;
+    edu:matchedResource res:SOC_Democracy_School .
+
+res:SOC_Democracy_School a edu:LearningResource ;
+    dc:title "학교 민주주의 사례" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4사08-02 a edu:AchievementStandard ;
+    dc:description "지역 사회 민주주의 참여를 이해한다." ;
+    edu:matchedResource res:SOC_Democracy_Local .
+
+res:SOC_Democracy_Local a edu:LearningResource ;
+    dc:title "지역 자치 사례" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4사09-01 a edu:AchievementStandard ;
+    dc:description "생활 문제를 합리적으로 해결한다." ;
+    edu:matchedResource res:SOC_ProblemSolving .
+
+res:SOC_ProblemSolving a edu:LearningResource ;
+    dc:title "생활 문제 해결 학습" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4사10-01 a edu:AchievementStandard ;
+    dc:description "자연환경과 인문환경을 탐구한다." ;
+    edu:matchedResource res:SOC_Environment .
+
+res:SOC_Environment a edu:LearningResource ;
+    dc:title "환경 탐구 학습" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4사10-02 a edu:AchievementStandard ;
+    dc:description "도시의 특징과 삶의 모습을 이해한다." ;
+    edu:matchedResource res:SOC_CityLife .
+
+res:SOC_CityLife a edu:LearningResource ;
+    dc:title "도시 생활 이해 자료" ;
+    dc:identifier <https://www.edunet.net> .
+
+#################################################
+# 과학
+#################################################
+
+ach:4과01-01 a edu:AchievementStandard ;
+    dc:description "힘과 관련된 현상을 관찰한다." ;
+    edu:matchedResource res:SCI_Force .
+
+res:SCI_Force a edu:LearningResource ;
+    dc:title "힘과 운동 관찰" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4과01-02 a edu:AchievementStandard ;
+    dc:description "물체의 무게를 비교한다." ;
+    edu:matchedResource res:SCI_Weight .
+
+res:SCI_Weight a edu:LearningResource ;
+    dc:title "무게 비교 실험" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4과01-03 a edu:AchievementStandard ;
+    dc:description "저울을 사용해 무게를 비교한다." ;
+    edu:matchedResource res:SCI_Scale .
+
+res:SCI_Scale a edu:LearningResource ;
+    dc:title "저울 사용법 학습" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4과01-04 a edu:AchievementStandard ;
+    dc:description "도구 사용에 따른 힘의 변화를 이해한다." ;
+    edu:matchedResource res:SCI_Tools .
+
+res:SCI_Tools a edu:LearningResource ;
+    dc:title "간단한 기계 탐구" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4과02-01 a edu:AchievementStandard ;
+    dc:description "동물을 특징에 따라 분류한다." ;
+    edu:matchedResource res:SCI_AnimalClass .
+
+res:SCI_AnimalClass a edu:LearningResource ;
+    dc:title "동물 분류 학습" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4과02-02 a edu:AchievementStandard ;
+    dc:description "동물의 생활 방식과 환경의 관계를 설명한다." ;
+    edu:matchedResource res:SCI_AnimalEnv .
+
+res:SCI_AnimalEnv a edu:LearningResource ;
+    dc:title "동물과 환경" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4과02-03 a edu:AchievementStandard ;
+    dc:description "동물의 특징을 활용한 생활용품을 설계한다." ;
+    edu:matchedResource res:SCI_Biomimicry_Animal .
+
+res:SCI_Biomimicry_Animal a edu:LearningResource ;
+    dc:title "동물 모방 설계 활동" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4과03-01 a edu:AchievementStandard ;
+    dc:description "식물을 특징에 따라 분류한다." ;
+    edu:matchedResource res:SCI_PlantClass .
+
+res:SCI_PlantClass a edu:LearningResource ;
+    dc:title "식물 분류 학습" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4과03-02 a edu:AchievementStandard ;
+    dc:description "식물의 생김새와 환경의 관계를 설명한다." ;
+    edu:matchedResource res:SCI_PlantEnv .
+
+res:SCI_PlantEnv a edu:LearningResource ;
+    dc:title "식물과 환경" ;
+    dc:identifier <https://www.edunet.net> .
+
+ach:4과03-03 a edu:AchievementStandard ;
+    dc:description "식물의 특징을 활용한 생활용품을 설계한다." ;
+    edu:matchedResource res:SCI_Biomimicry_Plant .
+
+res:SCI_Biomimicry_Plant a edu:LearningResource ;
+    dc:title "식물 모방 설계 활동" ;
+    dc:identifier <https://www.edunet.net> .
